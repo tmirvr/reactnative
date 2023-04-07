@@ -40,7 +40,7 @@ export default function Home() {
           listingsRef,
           where("offer", "==", true),
           orderBy("timestamp", "desc"),
-          limit(4)
+          limit(12)
         );
         // execute the query
         const querySnap = await getDocs(q);
@@ -101,7 +101,7 @@ export default function Home() {
           listingsRef,
           where("type", "==", "sale"),
           orderBy("timestamp", "desc"),
-          limit(4)
+          limit(12)
         );
         // execute the query
         const querySnap = await getDocs(q);

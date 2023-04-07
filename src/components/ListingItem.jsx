@@ -4,11 +4,36 @@ import { MdLocationOn } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 export default function ListingItem({ listing, id, onEdit, onDelete }) {
+const img = listing.imgUrls[0];
+ const {  title, category, published, author } = 'test'
+
   return (
-    <li className="relative bg-white flex flex-col justify-between items-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-[10px]">
+        <li className="relative bg-white flex flex-col justify-between items-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-[10px]">
+        <div className="item">
+            <div className="images">
+                <a><img
+          className="h-[400px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in"
+          loading="lazy"
+          src={listing.imgUrls[0]}
+        /></a>
+            </div>
+<div className="info flex justify-center flex-col py-4">
+                <div className="cat">
+                    <a className="text-orange-600 hover:text-orange-800">{category || "Unknown"}</a>
+                  <a className="text-gray-800 hover:text-gray-600">- {published || "Unknown"}</a>
+                </div>
+            <div className="title">
+                   <a className="text-xl font-bold text-gray-800 hover:text-gray-600">{title || "Title"}</a>
+                </div>
+               <p className="text-gray-500 py-3">
+                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind 
+                    text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+                </p>
+            </div>
+        </div>
       <Link className="contents" to={`/category/${listing.type}/${id}`}>
         <img
-          className="h-[170px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in"
+          className="h-[400px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in"
           loading="lazy"
           src={listing.imgUrls[0]}
         />

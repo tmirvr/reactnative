@@ -10,12 +10,25 @@ import {
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import ListingItem from "../components/ListingItem";
+import ListingItem from "../components/ListingItem2";
 import Slider from "../components/Slider";
 import { db } from "../firebase";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import SwiperCore, { Autoplay } from 'swiper';
+import { Card } from "../components/blog/Card"
+
+import { Category } from "../components/category/Category"
+
+
 
 export default function Home() {
   // Offers
+      const bg = {
+       
+        backgroundPosition: "right"
+    }
+        SwiperCore.use([Autoplay])
   const [offerListings, setOfferListings] = useState(null);
   useEffect(() => {
     async function fetchListings() {
@@ -39,6 +52,7 @@ export default function Home() {
           });
         });
         setOfferListings(listings);
+ 
       } catch (error) {
         console.log(error);
       }
@@ -104,69 +118,57 @@ export default function Home() {
       }
     }
     fetchListings();
+
   }, []);
   return (
-    <div>
-      <Slider />
-      <div className="max-w-6xl mx-auto pt-4 space-y-6">
-        {offerListings && offerListings.length > 0 && (
+
+
+<section className="py-1" style={bg}>
+   <Category />
+    
+        <div className="container mx-auto md:px-20">
+  
+
+            <Swiper
+
+                slidesPerView={1}
+                loop={true}
+                 autoplay= {{
+                    delay: 4000
+                }}
+                >
+    
+           {rentListings && rentListings.length > 0 && (
           <div className="m-2 mb-6">
-            <h2 className="px-3 text-2xl mt-6 font-semibold">Recent offers</h2>
-            <Link to="/offers">
-              <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out">
-                Show more offers
-              </p>
-            </Link>
-            <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
-              {offerListings.map((listing) => (
-                <ListingItem
-                  key={listing.id}
+           
+    
+           
+        <div className='container grid3 blog'>
+      
+   
+
+
+              {rentListings.map((listing, index) => (
+                <Card     key={index}
                   listing={listing.data}
-                  id={listing.id}
-                />
+                  id={listing.id} />
+                
               ))}
-            </ul>
+             </div>
           </div>
         )}
-        {rentListings && rentListings.length > 0 && (
-          <div className="m-2 mb-6">
-            <h2 className="px-3 text-2xl mt-6 font-semibold">Places for rent</h2>
-            <Link to="/category/rent">
-              <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out">
-                Show more places for rent
-              </p>
-            </Link>
-            <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
-              {rentListings.map((listing) => (
-                <ListingItem
-                  key={listing.id}
-                  listing={listing.data}
-                  id={listing.id}
-                />
-              ))}
-            </ul>
-          </div>
-        )}
-        {saleListings && saleListings.length > 0 && (
-          <div className="m-2 mb-6">
-            <h2 className="px-3 text-2xl mt-6 font-semibold">Places for sale</h2>
-            <Link to="/category/sale">
-              <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out">
-                Show more places for sale
-              </p>
-            </Link>
-            <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
-              {saleListings.map((listing) => (
-                <ListingItem
-                  key={listing.id}
-                  listing={listing.data}
-                  id={listing.id}
-                />
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-    </div>
+  
+             
+                
+    
+            </Swiper>
+
+            
+        </div>
+    </section>
+
+
+
+   
   );
 }

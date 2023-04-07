@@ -79,7 +79,7 @@ export default function Category() {
   return (
     <div className="max-w-6xl mx-auto px-3">
       <h1 className="text-3xl text-center mt-6 font-bold mb-6">
-        {params.categoryName === "rent" ? "Places for rent" : "Places for sale"}
+        {params.categoryName === "rent" ? "Places fsor rent" : "Places for sale"}
       </h1>
       {loading ? (
         <Spinner />

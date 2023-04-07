@@ -21,18 +21,19 @@ export default function Header() {
     }
   }
   return (
-    <div className="bg-white border-b shadow-sm sticky top-0 z-40">
-      <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
-        <div>
-          <img
-            src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg"
-            alt="logo"
-            className="h-5 cursor-pointer"
-            onClick={() => navigate("/")}
-          />
-        </div>
-        <div>
-          <ul className="flex space-x-10">
+      <header className="bg-gray-50">
+        <div className="xl:container xl:mx-auto flex flex-col items-center sm:flex-row sm:justify-between text-center py-3">
+            <div className="md:flex-none w-96 order-2 sm:order-1 flex justify-center py-4 sm:py-0">
+         
+            </div>
+            <div className="shrink w-80 sm:order-2">
+           
+                    <a className="font-bold uppercase text-3xl">Blogerret</a>
+             
+            </div>
+            <div className="w-96 order-3 flex justify-center">
+                <div className="flex gap-6">
+                  <ul className="flex space-x-10">
             <li
               className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
                 pathMatchRoute("/") && "text-black border-b-red-500"
@@ -41,26 +42,21 @@ export default function Header() {
             >
               Home
             </li>
+           
             <li
               className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                pathMatchRoute("/offers") && "text-black border-b-red-500"
-              }`}
-              onClick={() => navigate("/offers")}
-            >
-              Offers
-            </li>
-            <li
-              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                (pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) &&
+                (pathMatchRoute("/login") || pathMatchRoute("/dashboard")) &&
                 "text-black border-b-red-500"
               }`}
-              onClick={() => navigate("/profile")}
+              onClick={() => navigate("/dashboard")}
             >
               {pageState}
             </li>
-          </ul>
+          </ul> 
+                </div>
+            </div>
         </div>
-      </header>
-    </div>
+    </header>
+    
   );
 }

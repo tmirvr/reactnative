@@ -71,7 +71,7 @@ export default function SignUp() {
           </div>
 
           <form onSubmit={onSubmit} >
-           <span>Username *</span>
+           <span>Full Name *</span>
             
             <input       type=""
                 type="text"

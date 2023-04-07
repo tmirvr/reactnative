@@ -53,7 +53,7 @@ export default function SignIn() {
           </div>
 
           <form onSubmit={onSubmit} >
-            <span>Username or email address *</span>
+            <span>Email address *</span>
             <input       type="email"
               id="email"
               value={email}

@@ -71,7 +71,7 @@ export default function Home() {
           listingsRef,
           where("type", "==", "rent"),
           orderBy("timestamp", "desc"),
-          limit(4)
+          limit(12)
         );
         // execute the query
         const querySnap = await getDocs(q);
